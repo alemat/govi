@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MOH | Travel &#174;</title>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'moh-icon.png' %>
+  <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'travel_style.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%=  stylesheet_link_tag 'dark.css', media: 'all', 'data-turbolinks-track': 'reload', id: 'dark-theme', disabled: true %>
+</head>
+<body class="theme-blue navbar-fixed sidebar-fixed footer-fixed">
+  <div id="loading-bar"></div>
+<div class="all-content-wrapper">
+  <header>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <!-- Left Section: Logo, Site Name, and Toggler -->
+        <div class="navbar-left">
+          <a href="#" class="toggle-left-sidebar js-toggle-left-sidebar">
+            <i class="fa fa-lg fa-navicon"></i>
+          </a>
+          <%= link_to travel_path, class: 'navbar-brand' do %>
+              <span class="logo-minimized"><%= image_tag "moh-logo.png", width: "30" %></span>
+              <span class="logo"> <%= image_tag "moh-logo.png", width: "30" %> 
+              MOH </span>
+          <% end %>
+          
+          
+        </div>
+
+        <!-- Center Section: Search (hidden on mobile) -->
+        <div class="navbar-center">
+          <form action="<%= search_path %>" method="get">
+              <input type="hidden" name="model" value="employee">
+              <div class="position-relative" style="display: inline-block; width: 100%;">
+                  <i class="fa fa-search position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: #bbb; z-index: 10;"></i>
+                  <input type="text" class="form-control form-control-search" name="query" placeholder="Search people..." style="padding-left: 40px; padding-right: 50px; width: 100%;">
+                  
+                <a href="<%= search_elibrary_documents_path %>" class="position-absolute advanced-search-btn" style="right: 5px; top: 50%; transform: translateY(-50%); border: none; background: transparent; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                    <i class="fa fa-sliders" style="color: #bbb; font-size: 16px;"></i>
+                </a>
+              </div>
+          </form>
+        </div>
+
+        <!-- Right Section: Notifications and User Menu -->
+        <div class="navbar-right">
+          <ul class="nav navbar-nav">
+            <%= render partial: 'menus/top_menu/user' %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <aside class="sidebar">
+    <nav class="sidebar-icons-nav">
+      <ul class="iconsmenu">
+        <%= render partial: 'menus/compact_menu/application' %>
+      </ul>
+    </nav>
+    <nav class="sidebar-nav">
+      <ul class="metismenu">
+        <br>
+        <%= cache "current-time", expires_in: 1.minute do %>
+          <%= render partial: "menus/metis_menu/travel/menus" %>
+        <% end %>
+      </ul>
+    </nav>
+  </aside>
+    <div class="dashboard-heading">
+    <div class="dashboard-heading__content">
+      <h4 class="dashboard-heading__title">
+        <%= link_to travel_path, class: "dashboard-heading__link" do %>
+          <div class="d-flex align-items-center justify-content-center round-30 rounded bg-primary-travel flex-shrink-0">
+            <%= image_tag "travel.svg", size: '20x20', alt: 'Travel' %> 
+          </div>
+          <span>Travel</span>
+        <% end %>
+        <%= link_to new_travel_request_path, class: "btn btn-rounded btn-outline btn-primary" do %>
+          <i class="fa fa-plus"></i>
+        <% end %>
+      </h4>
+      
+      <div class="dashboard-heading__actions">
+        
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="page-body">
+      <%= render partial: 'shared/flash_messages' %>
+      <%= yield :header %>
+      <div class="panel panel-default">
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          &copy; <%= Date.today.year %> <font color="#777"><b>MOH ICT - Ethiopia</b></font>.
+        </div>
+        <div class="col-xs-4"> 
+          <center><font style="color: transparent !important;">IN GOD I TRUST !</font></center>
+        </div>
+        <div class="col-sm-4 align-right">
+          <font style="color: transparent !important;">Alemat G. Michael</font>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

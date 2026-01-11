@@ -1,0 +1,92 @@
+<% 
+  # Accept either user or employee parameter
+  user_profile = local_assigns[:user] || local_assigns[:employee] || @employee
+%>
+
+<% if user_profile.present? && current_user.present? %>
+  <% mutual_friends = current_user.mutual_friends_with(user_profile) %>
+  <% if mutual_friends.any? %>
+    <div class="panel panel-default mutual-friends-panel">
+      <div class="panel-heading">
+         <small> Mutual connections &nbsp; &nbsp; <span class="badge"><%= mutual_friends.count %></span></small>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <% mutual_friends.first(6).each do |friend| %>
+            <div class="col-xs-4 text-center mb-10">
+              <%= link_to employee_path(friend), class: "mutual-friend-link" do %>
+                <div class="mutual-friend-avatar">
+                  <%= user_avatar(friend, width: 40, height: 40) %>
+                </div>
+                <div class="mutual-friend-name">
+                  <%= friend.first_name %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        
+        <% if mutual_friends.count > 6 %>
+          <div class="text-center mt-10">
+            <a href="#" data-toggle="modal" data-target="#mutualFriendsModal">
+              See all <%= mutual_friends.count %> mutual connections
+            </a>
+          </div>
+          
+          <!-- Modal for all mutual friends -->
+          <div class="modal fade" id="mutualFriendsModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title">Mutual Friends with <%= user_profile.full_name %></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <% mutual_friends.each do |friend| %>
+                      <div class="col-xs-4 text-center mb-15">
+                        <%= link_to employee_path(friend), class: "mutual-friend-link" do %>
+                          <div class="mutual-friend-avatar">
+                            <%= user_avatar(friend, width: 50, height: 50) %>
+                          </div>
+                          <div class="mutual-friend-name">
+                            <%= friend.full_name.titleize %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       <small> Mutual Friends </small>
+      </div>
+      <div class="panel-body">
+        <small><p class="text-center">No mutual connections yet.</p></small>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <small>Error</small>
+    </div>
+    <div class="panel-body">
+      <p class="text-center text-danger">
+        <small>Unable to display mutual connections. </small>
+        <% if !user_profile.present? %>
+         <small> User profile not found.</small>
+        <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>

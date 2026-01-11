@@ -1,0 +1,256 @@
+<% content_for :header do %>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="panel text-bg-primary">
+          <div class="panel-body">
+              <div class="col-sm-5 text-center text-md-end">
+                <%= image_tag "welcome-bg.png", class: "img-fluid mb-n7 mt-2", width: "180" %>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="row">
+          <div class="panel panel-body">
+            <div class="vstack gap-9 mt-2">
+              <div class="hstack align-items-center gap-3">
+                <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-subtle flex-shrink-0">
+                  <i class="fa fa-lg fa-home text-primary"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 text-nowrap">64 new orders</h6>
+                  <span>Processing</span>
+                </div>
+              </div>
+              <div class="hstack align-items-center gap-3">
+                <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-subtle flex-shrink-0">
+                  <i class="fa fa-home text-primary"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 text-nowrap">64 new orders</h6>
+                  <span>Processing</span>
+                </div>
+              </div>
+              <div class="hstack align-items-center gap-3">
+                <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-subtle flex-shrink-0">
+                  <i class="fa fa-home text-primary"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 text-nowrap">64 new orders</h6>
+                  <span>Processing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h3></h3>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-visitor flex-shrink-0">
+                <%= image_tag "visitor.svg", size: "50x50" %>
+              </div>
+              <div>
+                <h6>Visitor</h6>
+                <span class="text-muted">Visitor Desk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-grievance flex-shrink-0">
+                <%= image_tag "greviance.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Grievance</h6>
+                <span class="text-muted">Complaint Manager</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-helpdesk flex-shrink-0">
+                <%= image_tag "itsupport.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Help Desk</h6>
+                <span class="text-muted">ICT Support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-fleet flex-shrink-0">
+                <%= image_tag "fleet.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Fleet</h6>
+                <span class="text-muted">Transport Desk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row clearfix">
+      <%= link_to root_path do %>
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-travel flex-shrink-0">
+                <%= image_tag "travel.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Travel</h6>
+                <span class="text-muted">Travel Approvals</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-elibrary flex-shrink-0">
+                <%= image_tag "elibrary.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>eLibrary</h6>
+                <span class="text-muted">Digital Library</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-om flex-shrink-0">
+                <%= image_tag "om.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>OfficeMemo</h6>
+                <span class="text-muted">Office Letters</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-jobboard flex-shrink-0">
+                <%= image_tag "jobs.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>JobBoard</h6>
+                <span class="text-muted"> Career Opportunities</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Upcoming Apps</h3>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <%= link_to root_path do %>
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-travel flex-shrink-0">
+                <%= image_tag "travel.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>eLearning</h6>
+                <span class="text-muted">Learn Online</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-elibrary flex-shrink-0">
+                <%= image_tag "project.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Project</h6>
+                <span class="text-muted">Manage Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-subtle flex-shrink-0">
+                <%= image_tag "finance.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Finance</h6>
+                <span class="text-muted">Financial Requests</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to root_path do %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="card-box">
+            <div class="hstack align-items-center gap-3">
+              <div class="d-flex align-items-center justify-content-center round-48 rounded bg-primary-jobboard flex-shrink-0">
+                <%= image_tag "jobs.svg", size: "30x30" %>
+              </div>
+              <div>
+                <h6>Procurement</h6>
+                <span class="text-muted"> Procurement Management System</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<% end %>

@@ -1,0 +1,12 @@
+<% content_for :title, "Editing organization unit" %>
+
+<h1>Editing organization unit</h1>
+
+<%= render "form", organization_unit: @organization_unit %>
+
+<br>
+
+<div>
+  <%= link_to "Show this organization unit", @organization_unit %> |
+  <%= link_to "Back to organization units", organization_units_path %>
+</div>

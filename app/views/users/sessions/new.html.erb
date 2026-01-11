@@ -1,0 +1,48 @@
+<h1 class="login-message__title">Sign In</h1>
+
+<div class="login-form form-default js-login-form">
+  <%= simple_form_for(
+      resource,
+      as: resource_name,
+      url: session_path(resource_name),
+      data: { turbo: false }
+    ) do |f| %>
+
+    <!-- Error messages -->
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <!-- Email -->
+    <div class="form-row">
+      <%= f.email_field :email, 
+            required: true, 
+            autofocus: true, 
+            input_html: { autocomplete: "email" }, 
+            placeholder: "E-Mail" %>
+    </div>
+
+    <!-- Password -->
+    <div class="form-row">
+      <%= f.password_field :password, 
+            required: true, 
+            input_html: { autocomplete: "current-password" }, 
+            placeholder: "Password" %>
+    </div>
+
+    <!-- Remember Me -->
+    <% if devise_mapping.rememberable? %>
+      <div class="form-row form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <!-- Submit Button -->
+    <div class="form-row mt-3">
+      <%= f.button :submit, "Log In", class: "btn btn-rounded btn-primary btn-block" %>
+    </div>
+
+    <!-- Links (Forgot password / Sign up) -->
+    <%= render "users/shared/links" %>
+
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<form class="form-horizontal" action="<%= search_path %>" method="get">
+  <div class="input-group input-group-search dropdown"> <!-- ADD dropdown class here -->
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-default dropdown-toggle">
+        <i class="fa fa-lg fa-search text-primary"></i> Select
+      </button>
+      <ul class="dropdown-menu">
+        <li class="ms-hover"><a href="javascript:void(0);" data-value="document"><i class="fa fa-book text-primary"></i> eLibrary</a></li>
+        <li class="ms-hover"><a href="javascript:void(0);" data-value="jobs"><i class="fa fa-suitcase text-primary"></i> Jobs</a></li>
+      </ul>
+    </div>
+    <input type="hidden" name="model" id="model" value="">
+    <input type="text" class="form-control form-control-search" name="query" placeholder="..start typing">
+  </div>
+</form>

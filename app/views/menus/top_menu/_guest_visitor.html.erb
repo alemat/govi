@@ -1,0 +1,104 @@
+<div class="container px-3">
+          <%= link_to root_path, class: "navbar-brand pe-3" do %>
+            <%= image_tag 'moh-logo.png', size: "40" %> MOH <span class="fs-md text-muted border-start ps-3 ms-3"><i class="bx bx-id-card"></i> Visitor</span>
+          <% end %>
+          <div id="navbarNav" class="offcanvas offcanvas-end">
+            <div class="offcanvas-header border-bottom">
+              <h5 class="offcanvas-title">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a href="/eservices" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page"> eServices</a>
+                  <div class="dropdown-menu p-0">
+                    <div class="d-lg-flex">
+                      <div class="mega-dropdown-column bg-position-center bg-repeat-0 bg-size-cover rounded-3 rounded-end-0" style="background-image: url(<%= image_path 'eservice.png' %>); margin: -1px;"></div>
+                      <div class="mega-dropdown-column pt-lg-3 pb-lg-4">
+                        <ul class="list-unstyled mb-0">
+                          
+                          <li> &nbsp;</li>
+                          <li><%= link_to "eLibrary", elibrary_public_documents_path, class: "dropdown-item" %></li>
+                          <li><%= link_to "Visit MOH", visitor_welcome_path, class: "dropdown-item" %></li>
+                          <li><%= link_to "Career", job_board_careers_path, class: "dropdown-item" %></li>
+                          <li><%= link_to "Grievance Redressing Service", grs_welcome_path, class: "dropdown-item" %></li>
+                          <li><%= link_to "Volunteer", root_path(anchor: "services"), class: "dropdown-item" %></li>
+                          <li> &nbsp;</li>
+                          <li> &nbsp;</li>
+                          <li> &nbsp; </li>
+                          <li> &nbsp;</li>
+                          <li> &nbsp;</li>
+                          
+                        </ul>
+                      </div>
+                      <div class="mega-dropdown-column pt-lg-3 pb-lg-4">
+                        <ul class="list-unstyled mb-0">
+                          <li> </li>
+                          <li> </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Partners", root_path(anchor: "partners"), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Contact Us', contact_us_path, class: "nav-link" %>
+                </li>
+              </ul>
+            </div>
+            <% unless current_user %>
+            <div class="offcanvas-footer border-top">
+              <%= link_to main_app.new_user_session_path, class: "btn btn-primary w-100", rel: "noopener" do %>
+                <i class="bx bx-log-in fs-4 lh-1 me-1"></i>
+                &nbsp; Login
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+          <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+            <input type="checkbox" class="form-check-input" id="theme-mode">
+            <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+            <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+          </div>
+          <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <% if current_user %>
+            <div class="nav dropdown d-block order-lg-3 ms-4">
+              <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
+                <%= image_tag 'default_user.jpg', class: "rounded-circle", width: "48", alt: "Avatar" %>
+                <div class="d-none d-sm-block ps-2">
+                  <div class="fs-xs lh-1 opacity-60">Hello,</div>
+                  <div class="fs-sm dropdown-toggle"><%= current_user.email %></div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
+                <li>
+                  <%= link_to current_user, class: "dropdown-item d-flex align-items-center" do %>
+                    <i class="bx bx-user fs-base opacity-60 me-2"></i>
+                    My Profile
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to root_path, class: "dropdown-item d-flex align-items-center" do %>
+                    <i class="bx bx-grid fs-base opacity-60 me-2"></i>
+                    My Apps
+                  <% end %>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, class: "dropdown-item d-flex align-items-center" do %>
+                    <i class="bx bx-log-out fs-base opacity-60 me-2"></i> Log Out
+                    <% end %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to main_app.new_user_session_path do %>
+              <button class="btn btn-outline btn-visitor btn-sm fs-sm rounded order-lg-3 d-none d-lg-inline-flex">
+            <i class="bx bx-log-in fs-lg me-2"></i> Sign in </button>
+            <% end %>
+          <% end %>
+</div>

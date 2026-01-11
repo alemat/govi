@@ -1,0 +1,71 @@
+<% if current_user.super_admin? or current_user.grs_manager? or current_user.minister? or current_user.grs_committee? %>
+  <li>
+    <%= link_to grs_analysis_path do %>
+      <%= tabler_icon "chart-bar", size: "16px" %>
+      <span class="nav-label">Statistics</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to grs_grievances_path do %>
+      <%= tabler_icon "list", size: "16px" %>
+      <span class="nav-label">Grievances</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to search_grs_grievances_path do %>
+      <%= tabler_icon "search", size: "16px" %>
+      <span class="nav-label">Search</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to grs_categories_path do %>
+      <%= tabler_icon "sitemap", size: "16px" %>
+      <span class="nav-label">Grievance Types</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to grs_committees_path do %>
+      <%= tabler_icon "users", size: "16px" %>
+      <span class="nav-label">Committees</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to grs_annual_reports_path do %>
+      <%= tabler_icon "download", size: "16px" %>
+      <span class="nav-label">Annual Reports</span>
+    <% end %>
+  </li>
+
+<% elsif current_user.employee? or current_user.member? %>
+  <li>
+    <%= link_to grs_grievances_path do %>
+      <%= tabler_icon "list", size: "16px" %>
+      <span class="nav-label">My Grievances</span>
+    <% end %>
+  </li>
+<% elsif current_user.director? %>
+  <li>
+    <%= link_to search_grs_grievances_path do %>
+      <%= tabler_icon "search", size: "16px" %>
+      <span class="nav-label">Search Grievances</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to grs_grievances_path(type: 'org_unit') do %>
+      <%= tabler_icon "list", size: "16px" %>
+      <span class="nav-label">Grievances</span>
+    <% end %>
+  </li>
+<% end %>
+
+<li>
+  <%= link_to grs_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

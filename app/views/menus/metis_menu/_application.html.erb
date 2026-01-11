@@ -1,0 +1,23 @@
+<li>
+  <%= link_to root_path do %>
+    <%= tabler_icon "home", size: "16px" %>
+    <span class="nav-label">Home</span>
+  <% end %>
+</li>
+
+<li data-controller="metismenu">
+  <a href="#visitorSettings"
+     data-action="click->metismenu#toggle"
+     class="menu-toggle">
+    <%= tabler_icon "briefcase", size: "16px" %>
+    <span class="nav-label">My Visits</span>
+  </a>
+  <ul id="visitorSettings" class="collapse">
+    <li><%= link_to 'Pending Requests', root_path(type: "pending") %></li>
+    <li><%= link_to 'Upcoming', root_path(type: "upcoming") %></li>
+    <li><%= link_to 'Cancelled', root_path(type: "cancelled") %></li>
+    <li><%= link_to 'Rescheduled', root_path(type: "rescheduled") %></li>
+    <li><%= link_to 'Completed', root_path(type: "completed") %></li>
+    <li><%= link_to 'All Visits', root_path %></li>
+  </ul>
+</li>

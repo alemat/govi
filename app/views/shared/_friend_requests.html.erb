@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Friend Requests
+      <% if @pending_friend_requests.any? %>
+        <span class="badge"><%= @pending_friend_requests.count %></span>
+      <% end %>
+    </h3>
+  </div>
+  <div class="panel-body p-0">
+    <% if @pending_friend_requests.any? %>
+      <ul class="media-list">
+        <% @pending_friend_requests.each do |request| %>
+          <li class="media" id="friend_request_<%= request.id %>">
+            <div class="media-left">
+              <%= link_to employee_path(request.user) do %>
+                <%= user_avatar(request.user, width: 50, height: 50) %>
+              <% end %>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">
+                <%= link_to request.user.full_name.titleize, employee_path(request.user) %>
+              </h4>
+              <p class="text-muted">
+                <% if request.user.organization_unit.present? %>
+                  <%= request.user.organization_unit.name.titleize %>
+                <% else %>
+                  No department
+                <% end %>
+              </p>
+              <div class="btn-group btn-group-sm">
+                <%= button_to accept_friendship_path(request), 
+                              method: :patch, 
+                              class: "btn btn-sm btn-success",
+                              data: { turbo: true } do %>
+                  <i class="fa fa-check"></i> Accept
+                <% end %>
+                <%= button_to reject_friendship_path(request), 
+                              method: :patch, 
+                              class: "btn btn-sm btn-danger",
+                              data: { turbo: true } do %>
+                  <i class="fa fa-times"></i> Reject
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="empty-state-message">
+        <i class="fa fa-info-circle"></i> No pending friend requests
+      </div>
+    <% end %>
+  </div>
+</div>

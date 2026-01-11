@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  partner_type: one
+  name: MyString
+  short_name: MyString
+  phone: MyString
+  email: MyString
+  country: MyString
+  city: MyString
+  district: MyString
+  status: MyString
+  description: MyText
+
+two:
+  partner_type: two
+  name: MyString
+  short_name: MyString
+  phone: MyString
+  email: MyString
+  country: MyString
+  city: MyString
+  district: MyString
+  status: MyString
+  description: MyText

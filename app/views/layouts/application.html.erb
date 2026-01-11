@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Govi" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script>
+      const theme = localStorage.getItem("theme")
+      if (theme) {
+        document.documentElement.dataset.theme = theme
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.dataset.theme = "dark"
+      }
+    </script>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
+  </head>
+<body class="theme-blue navbar-fixed sidebar-fixed footer-fixed">
+<div class="all-content-wrapper">
+  <header>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-left">
+          <a href="#" class="toggle-left-sidebar" data-controller="sidebar" data-action="click->sidebar#toggle">
+            <span data-sidebar-target="toggleIcon">
+              <%= tabler_icon "menu-2", size: "20px" %>
+            </span>
+          </a>
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <span class="logo-minimized"><%= image_tag "moh-logo.png", width: "30" %></span>
+            <span class="logo"> <%= image_tag "moh-logo.png", width: "30" %> 
+            MOH </span>
+          <% end %>
+        </div>
+        <div class="navbar-center">
+          <form action="<%= root_path %>" method="get">
+            <input type="hidden" name="model" value="document">
+            <div class="position-relative" style="display: inline-block; width: 100%;">
+              <!-- Updated search icon with Tabler -->
+              <span class="position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); z-index: 10;">
+                <%= tabler_icon "search", size: "16px" %>
+              </span>
+              <input type="text" class="form-control form-control-search" name="query" placeholder="Search e-Library..." style="padding-left: 40px; padding-right: 50px; width: 100%;">
+              
+              <a href="<%= root_path %>" class="position-absolute advanced-search-btn" style="right: 5px; top: 50%; transform: translateY(-50%); border: none; background: transparent; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                <!-- Updated sliders icon with Tabler -->
+                <%= tabler_icon "adjustments-horizontal", size: "16px" %>
+              </a>
+            </div>
+          </form>
+        </div>
+        <div class="navbar-right">
+          <ul class="nav navbar-nav">
+            <%= render partial: 'menus/top_menu/user' %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <aside class="sidebar">
+    <nav class="sidebar-icons-nav">
+      <ul class="iconsmenu">
+        <%= render partial: 'menus/compact_menu/application' %>
+      </ul>
+    </nav>
+    <nav class="sidebar-nav">
+      <ul class="metismenu">
+        <br>
+        <%= render partial: 'menus/metis_menu/application' %>
+      </ul>
+    </nav>
+  </aside>
+  <div class="dashboard-heading">
+    <div class="dashboard-heading__content">
+      <h4 class="dashboard-heading__title">
+        
+      </h4>
+      
+      <div class="dashboard-heading__actions">
+          
+      </div>
+    </div>
+  </div>
+  <section class="content">
+      <div id="flash_messages">
+        <%= render partial: 'shared/flash_messages' %>
+      </div>
+      <%= yield :header %>
+        <%= yield %>
+  </section>
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          &copy; <%= Date.today.year %> <font color="#777"><b>MOH ICT - Ethiopia</b></font>.
+        </div>
+        <div class="col-xs-4"> 
+          <center><font style="color: transparent !important;">IN GOD I TRUST !</font></center>
+        </div>
+        <div class="col-sm-4 align-right">
+
+          <font style="color: transparent !important;">Alemat G. Michael</font>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

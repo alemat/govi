@@ -1,0 +1,53 @@
+<%   
+  # Accept either user or employee parameter
+  user = local_assigns[:employee] || local_assigns[:member] || local_assigns[:user]
+%>
+<% status = friendship_status(user) %>
+<div id="friendship_button_<%= user.id %>">
+  <% case status %>
+  <% when :self %>
+    <!-- Don't show any button for the current user -->
+  <% when :friends %>
+    <%= button_to friendship_path(current_user.friendship_with(user)),
+                  method: :delete,
+                  class: "btn btn-outline #{friendship_button_class(status)} btn-friend-request",
+                  style: "display: inline-block;",
+                  form: { data: { confirm: "Are you sure you want to remove connection with #{user.full_name}?" } },
+                  remote: true do %>
+      <%= friendship_button_text(status) %>
+    <% end %>
+  <% when :request_sent %>
+    <%= button_to cancel_friendship_path(current_user.friendship_with(user)),
+                  method: :patch,
+                  style: "display: inline-block;",
+                  class: "btn btn-sm btn-outline #{friendship_button_class(status)} btn-friend-request",
+                  remote: true do %>
+      <%= friendship_button_text(status) %>
+    <% end %>
+  <% when :request_pending %>
+    <div class="btn-group">
+      <%= button_to accept_friendship_path(user.friendship_with(current_user)),
+                    method: :patch,
+                    style: "display: inline-block;",
+                    class: "btn btn-sm btn-success",
+                    remote: true do %>
+        <i class="fa fa-check"></i> Accept
+      <% end %>
+      <%= button_to reject_friendship_path(user.friendship_with(current_user)),
+                    method: :patch,
+                    style: "display: inline-block;",
+                    class: "btn btn-sm btn-danger",
+                    remote: true do %>
+        <i class="fa fa-times"></i> Reject
+      <% end %>
+    </div>
+  <% else %>
+    <%= button_to friendships_path(friend_id: user.id),
+                  method: :post,
+                  style: "display: inline-block;",
+                  class: "btn #{friendship_button_class(status)} btn-friend-request",
+                  remote: true do %>
+      <%= friendship_button_text(status) %>
+    <% end %>
+  <% end %>
+</div>

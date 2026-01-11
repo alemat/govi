@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Organization types" %>
+
+<h1>Organization types</h1>
+
+<div id="organization_types">
+  <% @organization_types.each do |organization_type| %>
+    <%= render organization_type %>
+    <p>
+      <%= link_to "Show this organization type", organization_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New organization type", new_organization_type_path %>

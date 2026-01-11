@@ -1,0 +1,35 @@
+<li>
+  <%= link_to visitor_path do %>
+    <%= tabler_icon "home", size: "16px" %>
+    <span class="nav-label">Home</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to root_path do %>
+    <%= tabler_icon "calendar", size: "16px" %>
+    <span class="nav-label">Calendar</span>
+  <% end %>
+</li>
+
+<li>
+  <a href="#visitorSettings" data-toggle="collapse" aria-expanded="false" class="menu-toggle">
+    <%= tabler_icon "briefcase", size: "16px" %>
+    <span class="nav-label">My Visits</span>
+  </a>
+  <ul id="visitorSettings" class="collapse">
+    <li><%= link_to 'Pending Requests', visitor_visits_path(type: "pending") %></li>
+    <li><%= link_to 'Upcoming', visitor_visits_path(type: "upcoming") %></li>
+    <li><%= link_to 'Cancelled', visitor_visits_path(type: "cancelled") %></li>
+    <li><%= link_to 'Rescheduled', visitor_visits_path(type: "rescheduled") %></li>
+    <li><%= link_to 'Completed', visitor_visits_path(type: "completed") %></li>
+    <li><%= link_to 'All Visits', visitor_visits_path %></li>
+  </ul>
+</li>
+
+<li>
+  <%= link_to visitor_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

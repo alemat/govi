@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  custom_name: MyString
+  short_name: MyString
+  code: MyString
+  ownership: MyString
+  url: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone: MyString
+  email: MyString
+  description: MyText
+  visitable: false
+  organization_type: one
+  parent_organization_unit: one
+
+two:
+  name: MyString
+  custom_name: MyString
+  short_name: MyString
+  code: MyString
+  ownership: MyString
+  url: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone: MyString
+  email: MyString
+  description: MyText
+  visitable: false
+  organization_type: two
+  parent_organization_unit: two

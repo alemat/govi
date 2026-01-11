@@ -1,0 +1,33 @@
+<% if flash.any? %>
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 z-3" style="margin-top: 60px;">
+    <% flash.each do |key, message| %>
+      <%# Map Rails flash types to Bootstrap contextual classes %>
+      <% toast_class = case key.to_s
+         when 'notice', 'info' then 'text-bg-info'
+         when 'alert', 'warning' then 'text-bg-warning'
+         when 'success' then 'text-bg-success'
+         when 'error', 'danger' then 'text-bg-danger'
+         else 'text-bg-secondary'
+         end %>
+
+      <div class="toast align-items-center <%= toast_class %> border-0 show mb-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+        <div class="d-flex">
+          <div class="toast-body">
+            <%= message %>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    // Bootstrap 5.3 auto-init toasts (for future JS loaded toasts too)
+    document.addEventListener("DOMContentLoaded", function () {
+      const toastElList = [].slice.call(document.querySelectorAll('.toast'))
+      toastElList.forEach(function (toastEl) {
+        new bootstrap.Toast(toastEl).show()
+      })
+    });
+  </script>
+<% end %>

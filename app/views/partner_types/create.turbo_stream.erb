@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "partner_types_list" do %>
+  <p><%= @partner_type.name %></p>
+<% end %>
+
+<%= turbo_stream.replace "partner_type_modal" do %>
+  <%= render "form", partner_type: PartnerType.new %>
+<% end %>

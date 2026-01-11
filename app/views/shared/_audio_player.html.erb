@@ -1,0 +1,96 @@
+<% video_id = '77ZozI0rw7w' %>
+
+<% if video_id.present? %>
+  <div id="audio-player-container" data-video-id="<%= video_id %>">
+    <div class="audio-player-wrapper">
+      <button id="audio-player-button" class="btn btn-icon rounded-circle btn-primary audio-player-button">
+        <!-- Use Boxicons for Play Icon -->
+        <i class="bx bx-play"></i>
+      </button>
+      <div id="youtube-player"></div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  // Wait for the DOM content to be fully loaded (using vanilla JS)
+  document.addEventListener('DOMContentLoaded', function () {
+    const audioPlayerContainer = document.getElementById('audio-player-container');
+    if (!audioPlayerContainer) return;
+
+    const videoId = audioPlayerContainer.getAttribute('data-video-id');
+    let player;
+    let playing = false;
+
+    // Load YouTube API script
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    // Initialize player when YouTube API is ready
+    window.onYouTubeIframeAPIReady = function () {
+      if (!videoId) return;
+
+      player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: videoId,
+        playerVars: {
+          'playsinline': 1,
+          'controls': 0,
+          'disablekb': 1
+        },
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    };
+
+    // Handle player state changes (e.g., playing, paused, etc.)
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        playing = true;
+        updateButtonIcon();
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        playing = false;
+        updateButtonIcon();
+      }
+    }
+
+    // Update the button icon based on play state
+    function updateButtonIcon() {
+      const button = document.getElementById('audio-player-button');
+      const icon = button.querySelector('i');
+
+      if (playing) {
+        icon.classList.remove('bx-play');
+        icon.classList.add('bx-pause');
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-primary');
+      } else {
+        icon.classList.remove('bx-pause');
+        icon.classList.add('bx-play');
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-primary');
+      }
+    }
+
+    // Toggle play/pause when button is clicked
+    const playButton = document.getElementById('audio-player-button');
+    playButton.addEventListener('click', function () {
+      if (!player) return;
+
+      if (playing) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+
+      playing = !playing;
+      updateButtonIcon();
+    });
+  });
+</script>

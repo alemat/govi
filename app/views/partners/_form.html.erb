@@ -1,0 +1,22 @@
+
+<%= simple_form_for(@partner) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :partner_type %>
+    <%= f.input :name %>
+    <%= f.input :short_name %>
+    <%= f.input :phone %>
+    <%= f.input :email %>
+    <%= f.input :country %>
+    <%= f.input :city %>
+    <%= f.input :district %>
+    <%= f.input :status %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

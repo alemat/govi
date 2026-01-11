@@ -1,0 +1,27 @@
+<li>
+  <%= link_to find_people_employees_path do %>
+    <%= tabler_icon "search", size: "16px" %>
+    <span class="nav-label">Find Staff</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to employees_by_org_unit_employees_path do %>
+    <%= tabler_icon "sitemap", size: "16px" %>
+    <span class="nav-label">Tree View</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to find_people_employees_path do %>
+    <%= tabler_icon "chart-bar", size: "16px" %>
+    <span class="nav-label">Chart View</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to employees_path do %>
+    <%= tabler_icon "filter", size: "16px" %>
+    <span class="nav-label">Filter View</span>
+  <% end %>
+</li>

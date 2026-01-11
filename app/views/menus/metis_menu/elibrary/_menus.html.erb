@@ -1,0 +1,53 @@
+
+<li>
+  <%= link_to search_elibrary_documents_path do %>
+    <%= tabler_icon "search", size: "16px" %>
+    <span class="nav-label"> Search Files</span>
+  <% end %>
+</li>
+<li>
+  <%= link_to elibrary_favorite_documents_path do %>
+    <%= tabler_icon "heart", size: "16px" %>
+    <span class="nav-label"> My Favorites</span>
+  <% end %>
+</li>
+
+<% if current_user.super_admin? || current_user.minister? || current_user.state_minister? || current_user.elibrary_manager? %>
+  <li>
+    <%= link_to elibrary_analysis_path do %>
+      <%= tabler_icon "chart-bar", size: "16px" %>
+      <span class="nav-label"> Statistics</span>
+    <% end %>
+  </li>
+<% end %>
+
+<% if current_user.super_admin? || current_user.minister? || current_user.state_minister? || current_user.elibrary_manager? || current_user.partner_admin? || current_user.partner? || current_user.director? %>
+  <li>
+    <%= link_to my_documents_elibrary_documents_path do %>
+      <%= tabler_icon "book", size: "16px" %>
+      <span class="nav-label"> My Documents</span>
+    <% end %>
+  </li>
+<% end %>
+
+<% if current_user.super_admin? || current_user.elibrary_manager? || current_user.minister? || current_user.state_minister? %>
+  <li>
+    <%= link_to elibrary_administration_path do %>
+      <%= tabler_icon "database", size: "16px" %>
+      <span class="nav-label"> Manage Documents</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to elibrary_thematic_areas_path do %>
+      <%= tabler_icon "settings", size: "16px" %>
+      <span class="nav-label"> Settings</span>
+    <% end %>
+  </li>
+<% end %>
+
+<li>
+  <%= link_to elibrary_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label"> Help</span>
+  <% end %>
+</li>

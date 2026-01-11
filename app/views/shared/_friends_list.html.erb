@@ -1,0 +1,50 @@
+<% if friends.any? %>
+  <ul class="media-list">
+    <% friends.each do |friend| %>
+      <li class="media">
+        <div class="media-left">
+          <%= link_to employee_path(friend) do %>
+            <span class="media-object has-online-status">
+              <%= user_avatar(friend, width: 50, height: 50) %>
+              <% if defined?(online_status_tag) %>
+                <%= online_status_tag(friend) %>
+              <% end %>
+            </span>
+          <% end %>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to friend.full_name.titleize, employee_path(friend) %>
+          </h4>
+          <p class="text-muted">
+            <% if friend.organization_unit.present? %>
+              <%= friend.organization_unit.name.titleize %>
+            <% else %>
+              No department
+            <% end %>
+          </p>
+          <div class="btn-group btn-group-sm">
+            <% if current_user != friend %>
+              <div id="friendship_button_<%= friend.id %>" class="friend-button-container">
+                <%= render 'shared/friend_request_button', user: friend %>
+              </div>
+              <% if defined?(render_follow_button) && render_follow_button %>
+                <div id="follow_button_user_<%= friend.id %>" class="follow-button-container">
+                  <%= render 'shared/follow_button', followable: friend %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="text-center">
+    <%= paginate friends, remote: true, params: { controller: 'friendships', action: 'index' } %>
+  </div>
+<% else %>
+  <div class="empty-state-message">
+    <i class="fa fa-info-circle"></i> No connections found
+  </div>
+<% end %>

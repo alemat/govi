@@ -1,0 +1,66 @@
+<li>
+  <%= link_to planning_path do %>
+    <%= tabler_icon "dashboard", size: "16px" %>
+    <span class="nav-label">Dashboard</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to planning_dashboards_path do %>
+    <%= tabler_icon "chart-bar", size: "16px" %>
+    <span class="nav-label">Analysis</span>
+  <% end %>
+</li>
+
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <%= tabler_icon "calendar", size: "16px" %>
+    <span class="nav-label">Planning Periods</span>
+  </a>
+  <ul>
+    <li><%= link_to '› Budget Year', planning_budget_years_path %></li>
+    <li><%= link_to '› Planning Period', planning_events_path %></li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <%= tabler_icon "list", size: "16px" %>
+    <span class="nav-label">Annual Plans</span>
+  </a>
+  <ul>
+    <li><%= link_to '› Current Budget Year', planning_annual_plans_path(type: "Current") %></li>
+    <li><%= link_to '› All Budget Years', planning_annual_plans_path %></li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <%= tabler_icon "clipboard-list", size: "16px" %>
+    <span class="nav-label">Performance Reports</span>
+  </a>
+  <ul>
+    <li><%= link_to '› Current Budget Year', planning_dashboards_path %></li>
+    <li><%= link_to '› Previous Budget Years', planning_dashboards_path %></li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:void(0);" class="menu-toggle">
+    <%= tabler_icon "database", size: "16px" %>
+    <span class="nav-label">Metadata</span>
+  </a>
+  <ul>
+    <li><%= link_to '› Objectives', planning_objectives_path %></li>
+    <li><%= link_to '› Programs', planning_programs_path %></li>
+    <li><%= link_to '› Sub Programs', planning_sub_programs_path %></li>
+    <li><%= link_to '› Strategic Initiatives', planning_strategic_initiatives_path %></li>
+  </ul>
+</li>
+
+<li>
+  <%= link_to planning_help_path do %>
+    <%= tabler_icon "help", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

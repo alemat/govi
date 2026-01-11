@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "GOVI Platform" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", defer: true, "data-turbo-track": "reload" %>
+
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("theme");
+        if (stored) {
+          document.documentElement.dataset.theme = stored;
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.dataset.theme = "dark";
+        } else {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (e) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })()
+  </script>
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: var(--font-primary);
+    }
+
+    .users-layout {
+      display: flex;
+      min-height: 100vh;
+      background-color: var(--bg-content);
+    }
+
+    .users-left {
+      flex: 1;
+      background: url('/images/login-bg.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-white);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .users-left img.logo {
+      width: 120px;
+      margin-bottom: 1rem;
+    }
+
+    .users-left h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .users-left p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
+
+    .users-left .big-image {
+      margin-top: 2rem;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    .users-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      background-color: var(--bg-white);
+    }
+
+    .users-form {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .users-form h2 {
+      margin-bottom: 2rem;
+      color: var(--text-base);
+    }
+
+    .users-form .btn-primary {
+      width: 100%;
+    }
+
+    .users-form a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    @media (max-width: 992px) {
+      .users-layout {
+        flex-direction: column;
+      }
+      .users-left, .users-right {
+        flex: unset;
+        width: 100%;
+      }
+      .users-left {
+        min-height: auto;
+        padding-bottom: 1rem;
+      }
+      .users-left .big-image {
+        display: none; /* Hide big image on small screens */
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="users-layout">
+  <!-- Left Side: Logo + Title + Image -->
+  <div class="users-left">
+    <%= image_tag "moh-logo.png", class: "logo" %>
+    <h1>GOVI Platform</h1>
+    <p>Your gateway to smart health services</p>
+    <%= image_tag "ict-login.png", class: "big-image" %>
+  </div>
+
+  <!-- Right Side: Devise Forms -->
+  <div class="users-right">
+    <div class="users-form">
+      <div id="flash_messages">
+        <%= render partial: 'shared/flash_messages' %>
+      </div>
+      <% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

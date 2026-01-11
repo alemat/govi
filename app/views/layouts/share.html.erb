@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MOH &#174; </title>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'moh-icon.png' %>
+  <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'shares.js', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'read_more.js', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'new_style.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'common.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%=  stylesheet_link_tag 'dark.css', media: 'all', id: 'dark-theme', disabled: true %>
+</head>
+<body class="theme-blue navbar-fixed sidebar-fixed footer-fixed">
+  <div id="loading-bar"></div>
+<div class="all-content-wrapper">
+  <header>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-left">
+          <a href="#" class="toggle-left-sidebar js-toggle-left-sidebar">
+            <i class="fa fa-lg fa-navicon"></i>
+          </a>
+          <%= link_to root_path, class: 'navbar-brand' do %>
+              <span class="logo-minimized"><%= image_tag "moh-logo.png", width: "30" %></span>
+              <span class="logo"> <%= image_tag "moh-logo.png", width: "30" %> 
+              MOH </span>
+          <% end %>
+        </div>
+        <div class="navbar-center">
+          <form action="<%= search_path %>" method="get">
+              <input type="hidden" name="model" value="employee">
+              <div class="position-relative" style="display: inline-block; width: 100%;">
+                  <i class="fa fa-search position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: #bbb; z-index: 10;"></i>
+                  <input type="text" class="form-control form-control-search" name="query" placeholder="Search people..." style="padding-left: 40px; padding-right: 50px; width: 100%;">
+                  
+                <a href="<%= search_elibrary_documents_path %>" class="position-absolute advanced-search-btn" style="right: 5px; top: 50%; transform: translateY(-50%); border: none; background: transparent; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                    <i class="fa fa-sliders" style="color: #bbb; font-size: 16px;"></i>
+                </a>
+              </div>
+          </form>
+        </div>
+        <div class="navbar-right">
+          <ul class="nav navbar-nav">
+            <%= render partial: 'menus/top_menu/user' %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <aside class="sidebar">
+    <nav class="sidebar-icons-nav">
+      <ul class="iconsmenu">
+        <%= render partial: 'menus/compact_menu/application' %>
+      </ul>
+    </nav>
+    <nav class="sidebar-nav">
+      <ul class="metismenu">
+        <br>
+        <%= render partial: 'menus/metis_menu/application' %>
+      </ul>
+    </nav>
+  </aside>
+  <div class="dashboard-heading">
+    <div class="dashboard-heading__content">
+      <h4 class="dashboard-heading__title">
+        <%= link_to shares_path, class: "dashboard-heading__link" do %>
+        <div class="d-flex align-items-center justify-content-center round-30 rounded bg-primary-engage flex-shrink-0">
+            <%= image_tag "engage.svg", size: '20x20', alt: 'Engage' %> 
+          </div>
+          <span>Engage</span>
+        <% end %>
+      </h4>
+      
+      <div class="dashboard-heading__actions">
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="page-body">
+      <div id="flash_messages">
+        <%= render partial: 'shared/flash_messages' %>
+      </div>
+      <%= yield :header %>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-3 hidden-sm hidden-xs">
+          <div class="list-fixed">
+            <div class="panel panel-default">
+              <div class="panel-default profile-card">
+                <div class="profile-header"></div>
+                <div class="profile-body">
+                  <div class="image-area">
+                    <%= link_to employee_path(current_user.id) do %>
+                      <%= user_avatar(current_user, class: "img-circle m-b-10", width: 100, height: 100) %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <center> 
+                  <b><%= link_to current_user.full_name, employee_path(current_user.id), style: "color: #303840" %></b>
+                  <p><%= current_user.position || "--" %></p>
+                </center>
+                <br>
+              </div>
+            </div>
+            <br>
+
+            <div class="panel panel-body">
+              <strong><i class="fa fa-lg fa-info-circle text-primary"></i> <b class="text-muted"> Recent Activities</b></strong>
+            </div>
+              
+            <div class="panel panel-body">
+              <strong> <%= image_tag "cal.svg", size: "30x24" %> <b class="text-muted"> Upcoming Events</b></strong>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 main-content">
+          <%= yield %>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs">
+          <div class="list-fixed">
+            
+            <div class="panel panel-body">
+              <strong><i class="fa fa-group text-primary"></i> <b class="text-muted"> Who to follow</b></strong>
+            </div>
+            <br>
+            <br>
+            <div class="panel panel-body">
+              <strong> <%= image_tag "bd.svg", size: "30x24" %> <b class="text-muted"> Upcoming Birthdays</b></strong>
+              <div class="scrollable-list"> 
+                <% @upcoming_birthdays.each do |user| %>
+                    <%= link_to employee_path(user), class: "user-link" do %>
+                          <%= user_avatar(user, width: 25, height: 25, class: "img-circle") %>  
+                          <%= user.full_name %> 
+                          <small> — 
+                           <i class="fa fa-clock-o"></i>  <%= user.date_of_birth.strftime("%b %d") %>
+                          </small>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="panel panel-body">
+             <strong> <%= image_tag "retirement.svg", size: "30x24" %> <b class="text-muted"> Upcoming Retirements</b></strong>
+              <div class="scrollable-list"> 
+                <% @upcoming_retirements.each do |user| %>
+                  <%= link_to employee_path(user), class: "user-link" do %>
+                    <%= user_avatar(user, width: 24, height: 24, class: "img-circle") %>  
+                    <%= user.full_name %> 
+                    <small> — 
+                     <i class="fa fa-clock-o"></i>  <%= (user.date_of_birth + User::RETIREMENT_AGE.years).strftime("%b %d, %Y") %>
+                    </small>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          &copy; <%= Date.today.year %> <font color="#777"><b>MOH ICT - Ethiopia</b></font>.
+        </div>
+        <div class="col-xs-4"> 
+          <center><font style="color: transparent !important;">IN GOD I TRUST !</font></center>
+        </div>
+        <div class="col-sm-4 align-right">
+
+          <font style="color: transparent !important;">Alemat G. Michael</font>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

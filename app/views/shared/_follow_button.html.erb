@@ -1,0 +1,15 @@
+<div id="follow_button_<%= followable.class.name.underscore %>_<%= followable.id %>">
+  <% if current_user != followable && current_user.respond_to?(:following?) %>
+    <%= link_to follows_path(followable_id: followable.id, followable_type: followable.class.name),
+                method: :post,
+                class: "btn #{current_user.following?(followable) ? 'btn-outline btn-primary' : 'btn-primary'}",
+                style: "display: inline-block;",
+                remote: true do %>
+      <% if current_user.following?(followable) %>
+        <i class="fa fa-user-times"></i>&nbsp;Unfollow
+      <% else %>
+        <i class="fa fa-user-plus"></i>&nbsp;Follow
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

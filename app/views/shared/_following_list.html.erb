@@ -1,0 +1,78 @@
+<div id="userlist-content">
+  <% if following.any? %>
+    <ul class="follow-modal-list">
+      <% following.each do |followed| %>
+        <li class="follow-modal-item">
+          <% if following_type == 'User' %>
+            <%= link_to employee_path(followed), data: { modal_close: "1" }, class: "follow-modal-link" do %>
+              <div class="follow-media">
+                <span class="media-object pull-left has-online-status img-size-large">
+                  <%= user_avatar(followed, width: 50, height: 50) %>
+                  <%= online_status_tag(followed) %>
+                </span>
+                <div class="follow-media-body">
+                  <h4 class="follow-media-heading"><%= followed.full_name.titleize %></h4>
+                  <h5><%= followed.first_name %></h5>
+                </div>
+              </div>
+            <% end %>
+          <% elsif following_type == 'Partner' %>
+            <%= link_to partner_path(followed), data: { modal_close: "1" }, class: "follow-modal-link" do %>
+              <div class="follow-media">
+                <span class="media-object pull-left">
+                  <div class="space-acronym" 
+                       style="--base-color: <%= random_color_for(followed.id) %>; 
+                              background-color: var(--base-color); 
+                              width: 34px; 
+                              height: 34px; 
+                              font-size: 10px; 
+                              padding: 16.92px 0; 
+                              border-radius: 2px; 
+                              box-shadow: 0 0 0 10px rgba(0,0,0,0.03),0 0 0 1px rgba(255,255,255,0.22) inset;">
+                    <span><%= followed.short_name[0..3].upcase %></span>
+                  </div>
+                </span>
+                <div class="follow-media-body">
+                  <h4 class="follow-media-heading"><%= followed.name.titleize %></h4>
+                  <h5><%= followed.partner_type&.name || 'Partner' %></h5>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to organization_unit_path(followed), data: { modal_close: "1" }, class: "follow-modal-link" do %>
+              <div class="follow-media">
+                <span class="media-object pull-left">
+                  <div class="space-acronym" 
+                       style="--base-color: <%= random_color_for(followed.id) %>; 
+                              background-color: var(--base-color); 
+                              width: 34px; 
+                              height: 34px; 
+                              font-size: 10px; 
+                              padding: 16.92px 0; 
+                              border-radius: 2px; 
+                              box-shadow: 0 0 0 10px rgba(0,0,0,0.03),0 0 0 1px rgba(255,255,255,0.22) inset;">
+                    <span><%= followed.short_name[0..3].upcase %></span>
+                  </div>
+                </span>
+                <div class="follow-media-body">
+                  <h4 class="follow-media-heading"><%= followed.name.titleize %></h4>
+                  <h5><%= followed.organization_type&.name || 'Organization' %></h5>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    
+    <% if following.total_pages > 1 %>
+      <div class="pagination-container">
+        <%= paginate following, remote: true %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="empty-state-message">
+      Not following any <%= following_type.downcase.pluralize %> yet
+    </div>
+  <% end %>
+</div>

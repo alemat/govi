@@ -1,0 +1,89 @@
+<% if current_user.super_admin? or current_user.hr_manager? or current_user.minister? %>
+
+  <li>
+    <%= link_to job_board_path do %>
+      <%= tabler_icon "home", size: "16px" %>
+      <span class="nav-label">Home</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_analysis_path do %>
+      <%= tabler_icon "chart-bar", size: "16px" %>
+      <span class="nav-label">Statistics</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_job_titles_path do %>
+      <%= tabler_icon "list", size: "16px" %>
+      <span class="nav-label">Job Posts</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_saved_jobs_path do %>
+      <%= tabler_icon "bookmark", size: "16px" %>
+      <span class="nav-label">Saved Jobs</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to search_job_board_job_titles_path do %>
+      <%= tabler_icon "search", size: "16px" %>
+      <span class="nav-label">Search Jobs</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_job_categories_path do %>
+      <%= tabler_icon "settings", size: "16px" %>
+      <span class="nav-label">Settings</span>
+    <% end %>
+  </li>
+
+<% else %>
+
+  <li>
+    <%= link_to job_board_path do %>
+      <%= tabler_icon "home", size: "16px" %>
+      <span class="nav-label">Home</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_job_titles_path(type: 'Open') do %>
+      <%= tabler_icon "list", size: "16px" %>
+      <span class="nav-label">Open Jobs</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to search_job_board_job_titles_path do %>
+      <%= tabler_icon "search", size: "16px" %>
+      <span class="nav-label">Search Jobs</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_job_applicants_path do %>
+      <%= tabler_icon "briefcase", size: "16px" %>
+      <span class="nav-label">My Applications</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to job_board_saved_jobs_path do %>
+      <%= tabler_icon "bookmark", size: "16px" %>
+      <span class="nav-label">Saved Jobs</span>
+    <% end %>
+  </li>
+
+<% end %>
+
+<li>
+  <%= link_to job_board_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

@@ -1,0 +1,84 @@
+<div class="container px-3">
+  <%= link_to root_path, class: "navbar-brand pe-3" do %>
+    <%= image_tag 'moh-logo.png', size: "35" %>
+     MOH <sup><font size="1"> &#174;</font></sup>
+  <% end %>
+  <div id="navbarNav" class="offcanvas offcanvas-end">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+      </ul>
+    </div>
+    <% unless current_user %>
+    <div class="offcanvas-footer border-top">
+      <%= link_to main_app.new_user_session_path, class: "btn btn-primary w-100", rel: "noopener" do %>
+        <i class="bx bx-log-in fs-4 lh-1 me-1"></i>
+        &nbsp; Login
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+    <input type="checkbox" class="form-check-input" id="theme-mode">
+    <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+    <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+  </div>
+
+  <%= link_to notifications_path, class: "btn btn-icon btn-secondary rounded-circle position-relative ms-2" do %>
+    <span class="badge bg-danger rounded-circle position-absolute top-0 start-100 translate-middle-x ms-n1 mt-n2">
+      <%= Notification.where(recipient: current_user, read_at: nil).count %>
+    </span>
+    <i class="bx bx-bell fs-4"></i>
+  <% end %>
+  <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <% if current_user %>
+    <div class="nav dropdown d-block order-lg-3 ms-4">
+      <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
+        <%= user_avatar(current_user, width: 38, height: 38, class: "rounded-circle") %>
+        <div class="d-none d-sm-block ps-2">
+          <div class="fs-xs lh-1 opacity-60">Hello,</div>
+          <div class="fs-sm dropdown-toggle"><%= current_user.email %></div>
+        </div>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
+        <li>
+  
+          <% if current_user.organization_unit_id == nil %>
+            <%= link_to member_path(id: current_user.id), class: "dropdown-item d-flex align-items-center" do %>
+              <i class="bx bx-user fs-base opacity-60 me-2"></i> 
+              My Profile
+            <% end %>
+          <% else %>
+            <%= link_to employee_path(id: current_user.id), class: "dropdown-item d-flex align-items-center" do %>
+                <i class="bx bx-user fs-base opacity-60 me-2"></i> 
+                My Profile
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path, class: "dropdown-item d-flex align-items-center" do %>
+            <i class="bx bx-grid fs-base opacity-60 me-2"></i>
+            My Apps
+          <% end %>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+          <%= link_to destroy_user_session_path, class: "dropdown-item d-flex align-items-center" do %>
+            <i class="bx bx-log-out fs-base opacity-60 me-2"></i> Log Out
+            <% end %>
+        </li>
+      </ul>
+    </div>
+  <% else %>
+    <%= link_to main_app.new_user_session_path do %>
+      <button class="btn btn-secondary btn-sm fs-sm rounded order-lg-3 d-none d-lg-inline-flex">
+    <i class="bx bx-log-in fs-lg me-2"></i> Sign in </button>
+    <% end %>
+  <% end %>
+</div>

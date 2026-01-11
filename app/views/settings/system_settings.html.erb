@@ -1,0 +1,86 @@
+
+<% content_for :header do %>
+    <div class="block-header">
+      <br>
+     <center> <h1 class="text-muted"> <b><i class="fa fa-gear"></i> System Settings </b></h1></center>
+     <br>
+    </div> 
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="card card-body">
+      <div class="tabs-container horizontal" data-controller="tabs">
+        <ul class="tabs-nav">
+          <li class="active" data-tab-target="tab1" data-action="click->tabs#switch">
+            <%= tabler_icon "home", size: "16px" %> Tab 1
+          </li>
+          <li data-tab-target="tab2" data-action="click->tabs#switch">
+            <%= tabler_icon "settings", size: "16px" %> Tab 2
+          </li>
+          <li data-tab-target="tab3" data-action="click->tabs#switch">
+            <%= tabler_icon "info-circle", size: "16px" %> Tab 3
+          </li>
+          <div class="tabs-indicator"></div>
+        </ul>
+
+        
+
+        <div class="tabs-content">
+          <div class="tab-pane active" data-tab-id="tab1">
+            <p>Content for Tab 1</p>
+          </div>
+          <div class="tab-pane" data-tab-id="tab2">
+            <p>Content for Tab 2</p>
+          </div>
+          <div class="tab-pane" data-tab-id="tab3">
+            <p>Content for Tab 3</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <div class="card card-body">
+      <div class="tabs-container vertical" data-controller="tabs">
+        <div class="tabs-nav-vertical">
+          <li class="active" data-tab-target="tab1" data-action="click->tabs#switch">
+            <%= tabler_icon "home", size: "16px" %> Tab 1
+          </li>
+          <li data-tab-target="tab2" data-action="click->tabs#switch">
+            <%= tabler_icon "settings", size: "16px" %> Tab 2
+          </li>
+          <li data-tab-target="tab3" data-action="click->tabs#switch">
+            <%= tabler_icon "info-circle", size: "16px" %> Tab 3
+          </li>
+        </div>
+
+        <div class="tabs-indicator"></div>
+
+        <div class="tabs-content-vertical">
+          <div class="tab-pane active" data-tab-id="tab1">
+            <p>Vertical Tab 1 content</p>
+          </div>
+          <div class="tab-pane" data-tab-id="tab2">
+            <p>Vertical Tab 2 content</p>
+          </div>
+          <div class="tab-pane" data-tab-id="tab3">
+            <p>Vertical Tab 3 content</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<% end %>
+
+
+

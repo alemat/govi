@@ -1,0 +1,19 @@
+  <div class="panel-heading">
+    <br>
+    <h4 class="text-muted"> <b> <%= title rescue nil %></b>
+
+      <div class="pull-right">
+        <%= link_to om_path do %> 
+          <button type="button" class="btn btn-rounded btn-outline btn-primary"><i class="fa fa-times-circle"></i> Cancel  </button>
+        <% end %>
+      </div>
+    </h4>
+  </div>
+  <div class="panel panel-body">
+
+    <br>
+    <br>
+    
+    <%= yield %>
+
+  </div>

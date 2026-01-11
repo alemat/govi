@@ -1,0 +1,14 @@
+<%= simple_form_for(post) do |f| %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <%= f.error_notification %>
+
+      <%= f.input :title %>
+      <%= f.input :body %>
+
+      <div class="form-actions mt-2">
+        <%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

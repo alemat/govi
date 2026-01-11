@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "new_post" do %>
+  <%= render "form", post: Post.new %>
+<% end %>
+
+<%= turbo_frame_tag "posts" do %>
+  <%= render @posts %>
+<% end %>

@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <br>
+        <h4 class="text-muted"> &nbsp; &nbsp; <b><i class="fa fa-institution"></i> Partner Types</b> 
+        <div class="pull-right">
+<div data-controller="modal">
+
+  <!-- Trigger -->
+  <button type="button" data-action="modal#open">
+    New Partner
+  </button>
+
+  <!-- Modal -->
+  <div class="modal"
+       data-modal-target="container"
+       data-animation="zoom">
+
+    <div class="modal-dialog xlarge">
+      <div class="modal-content">
+
+        <!-- Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">New Partner Type Title</h5>
+          <button type="button"
+                  class="btn-close"
+                  data-action="modal#close"
+                  aria-label="Close"></button>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+          <%= simple_form_for(PartnerType.new) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :name, label: 'Name', required: true %>
+              <%= f.input :description %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit,
+                    'Submit Partner Type',
+                    class: 'btn btn-rounded btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-rounded btn-default"
+                  data-action="modal#close">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+          <%= link_to partners_path do %>
+            <button type="button" class="btn btn-rounded btn-primary"><i class="fa fa-institution"></i>Partners</button>
+          <% end %>
+          <br>
+        </div>
+        </h4>
+      
+
+
+    <div class="card card-body">
+      <table class="simple-table sortable exportable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @partner_types.each do |partner_type| %>
+            <tr>
+              <td><%= partner_type.name %></td>
+              <td>
+              <a href="#">
+                <button type="button" class="btn btn-outline btn-rounded btn-primary" data-toggle="modal" data-target="#editModal<%= partner_type.id %>"><i class="fa fa-edit"></i></button>
+              </a>
+              <%= link_to partner_type, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <button type="button" class="btn btn-rounded btn-outline btn-danger"> <i class="fa fa-trash"></i> </button>
+                <% end %>
+              </td>
+            </tr>
+
+                      <!-- Edit Modal for the specific assignment -->
+            <div class="modal fade" id="editModal<%= partner_type.id %>" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="editModalLabel<%= partner_type.id %>">Edit Partner Type</h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= simple_form_for(partner_type) do |f| %>
+                      <div class="form-inputs">
+                        <%= f.input :name %>
+                      </div>
+                      <div class="form-actions">
+                        <%= f.button :submit, 'Save Changes', class: 'btn btn-primary' %>
+                      </div>
+                    <% end %>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">CLOSE</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>

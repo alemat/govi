@@ -1,0 +1,72 @@
+<li>
+  <%= link_to travel_path do %>
+    <%= tabler_icon "home", size: "16px" %>
+    <span class="nav-label">Home</span>
+  <% end %>
+</li>
+
+<% if current_user.minister? || current_user.state_minister? || current_user.director? || current_user.travel_admin? || current_user.super_admin? %>
+  <li>
+    <%= link_to travel_statistics_path do %>
+      <%= tabler_icon "chart-bar", size: "16px" %>
+      <span class="nav-label">Statistics</span>
+    <% end %>
+  </li>
+<% end %>
+
+<li>
+  <%= link_to travel_requests_path do %>
+    <%= tabler_icon "plane", size: "16px" %>
+    <span class="nav-label">Travel Plans</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to travel_reports_path do %>
+    <%= tabler_icon "file-text", size: "16px" %>
+    <span class="nav-label">Travel Reports</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to travel_action_plans_path do %>
+    <%= tabler_icon "school", size: "16px" %>
+    <span class="nav-label">Knowledge Transfer</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to travel_deliverables_path do %>
+    <%= tabler_icon "package", size: "16px" %>
+    <span class="nav-label">Deliverables</span>
+  <% end %>
+</li>
+
+<% if current_user.minister? || current_user.travel_admin? || current_user.super_admin? %>
+  <li>
+    <%= link_to search_travel_requests_path do %>
+      <%= tabler_icon "filter", size: "16px" %>
+      <span class="nav-label">Filter Travels</span>
+    <% end %>
+  </li>
+
+  <hr style="border: none; border-top: 1px solid #444 !important;">
+
+  <li>
+    <a href="#hpSettings" data-toggle="collapse" aria-expanded="false" class="menu-toggle">
+      <%= tabler_icon "settings", size: "16px" %>
+      <span class="nav-label">Settings</span>
+    </a>
+    <ul id="hpSettings" class="collapse">
+      <li><%= link_to '› Travel Types', travel_t_types_path %></li>
+      <li><%= link_to '› Deliverable Types', travel_d_types_path %></li>
+    </ul>
+  </li>
+<% end %>
+
+<li>
+  <%= link_to travel_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

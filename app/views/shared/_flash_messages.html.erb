@@ -1,0 +1,44 @@
+<div id="flash-container">
+<% flash.each do |key, message| %>
+  <% 
+    alert_class = case key.to_s
+      when 'notice' then 'alert-info'
+      when 'success' then 'alert-success'
+      when 'alert' then 'alert-danger' # Devise sign-in errors
+      else 'alert-info'
+    end
+  %>
+
+  <div class="alert <%= alert_class %> alert-dismissible custom-flash" role="alert">
+    <button type="button" class="close" aria-label="Close"><i class="fa fa-lg fa-times-circle"></i></button>
+    <%= message %>
+  </div>
+<% end %>
+
+</div>
+
+
+<script>
+ document.addEventListener("turbo:load", () => {
+  const alerts = document.querySelectorAll(".alert");
+
+  const autoRemoveTimeout = setTimeout(() => {
+    alerts.forEach((alert) => {
+      alert.style.transition = "opacity 0.5s ease";
+      alert.style.opacity = "0";
+      setTimeout(() => alert.remove(), 500);
+    });
+  }, 3000);
+
+  document.querySelectorAll(".alert .close").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const alert = e.target.closest(".alert");
+      clearTimeout(autoRemoveTimeout);
+      alert.style.transition = "opacity 0.3s ease";
+      alert.style.opacity = "0";
+      setTimeout(() => alert.remove(), 300);
+    });
+  });
+});
+
+</script>

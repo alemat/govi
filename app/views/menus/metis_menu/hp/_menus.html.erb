@@ -1,0 +1,65 @@
+<li>
+  <%= link_to hp_path do %>
+    <%= tabler_icon "home", size: "16px" %>
+    <span class="nav-label">Home</span>
+  <% end %>
+</li>
+
+<% if current_user.super_admin? or current_user.helpdesk_manager? or current_user.it_expert? or current_user.senior_it_expert? or current_user.minister? %>
+  <li>
+    <%= link_to hp_analysis_path do %>
+      <%= tabler_icon "chart-bar", size: "16px" %>
+      <span class="nav-label">Statistics</span>
+    <% end %>
+  </li>
+  
+  <!-- Tickets collapsible menu -->
+  <li>
+    <a href="#ticketsMenu" data-toggle="collapse" aria-expanded="false" class="menu-toggle">
+      <%= tabler_icon "settings", size: "16px" %>
+      <span class="nav-label">Tickets</span>
+    </a>
+    <ul id="ticketsMenu" class="collapse">
+      <li><%= link_to '› Pending', hp_tickets_path(type: 'Pending') %></li>
+      <li><%= link_to '› Under Review', hp_tickets_path(type: 'Under Review') %></li>
+      <li><%= link_to '› Expert Assigned', hp_tickets_path(type: 'Expert Assigned') %></li>
+      <li><%= link_to '› In progress', hp_tickets_path(type: 'In Progress') %></li>
+      <li><%= link_to '› Resolved', hp_tickets_path(type: 'Resolved') %></li>
+      <li><%= link_to '› Not Resolved', hp_tickets_path(type: 'Not Resolved') %></li>
+    </ul>
+  </li>
+
+  <li>
+    <a href="#ticketsSettings" data-toggle="collapse" aria-expanded="false" class="menu-toggle">
+      <%= tabler_icon "settings-2", size: "16px" %>
+      <span class="nav-label">Settings</span>
+    </a>
+    <ul id="ticketsSettings" class="collapse">
+      <li><%= link_to '› Request Types', hp_types_path %></li>
+      <li><%= link_to '› Device Types', hp_device_types_path %></li>
+      <li><%= link_to '› Ticket Categories', hp_categories_path %></li>
+    </ul>
+  </li>
+
+  <li>
+    <%= link_to search_hp_tickets_path do %>
+      <%= tabler_icon "report-analytics", size: "16px" %>
+      <span class="nav-label">Reports</span>
+    <% end %>
+  </li>
+
+<% else %>
+  <li>
+    <%= link_to hp_tickets_path do %>
+      <%= tabler_icon "ticket", size: "16px" %>
+      <span class="nav-label"> My Tickets</span>
+    <% end %>
+  </li>
+<% end %>
+
+<li>
+  <%= link_to hp_help_path do %>
+    <%= tabler_icon "info-circle", size: "16px" %>
+    <span class="nav-label">Help</span>
+  <% end %>
+</li>

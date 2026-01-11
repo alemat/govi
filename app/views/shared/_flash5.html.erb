@@ -1,0 +1,100 @@
+<div id="flash-container">
+  <% flash.each do |key, message| %>
+    <% 
+      alert_class = case key.to_s
+        when 'notice' then 'alert-info'
+        when 'success' then 'alert-success'
+        when 'error', 'danger' then 'alert-danger'
+        when 'alert' then 'alert-warning'
+        else 'alert-info'
+      end
+    %>
+
+    <div class="alert <%= alert_class %> alert-dismissible fade show custom-flash" role="alert">
+      <%= message %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.alert').forEach(function (el) {
+        el.classList.remove('show');
+        setTimeout(() => el.remove(), 150); // waits for CSS transition
+      });
+    }, 600);
+  });
+</script>
+
+<style>
+#flash-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 400px;
+  max-width: 90%;
+}
+
+.custom-flash {
+  background-color: #fff !important;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.alert-success.custom-flash {
+  color: #5d89bd;
+  border-color: #5d89bd;
+}
+
+.alert-info.custom-flash {
+  color: #5d89bd;
+  border-color: #5d89bd;
+}
+
+.alert-warning.custom-flash {
+  color: #d73d3d;
+  border-color: #d73d3d;
+}
+
+.alert-danger.custom-flash {
+  color: #b94a48;
+  border-color: #b94a48;
+}
+
+.btn-close {
+  color: inherit;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+/* Close button */
+.custom-flash .close {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* move in from the edge */
+  color: inherit;
+  opacity: 0.7;
+  font-weight: bold;
+}
+
+.custom-flash .close:hover {
+  opacity: 1;
+}
+
+</style>

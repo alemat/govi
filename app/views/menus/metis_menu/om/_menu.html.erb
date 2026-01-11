@@ -1,0 +1,29 @@
+<li>
+  <%= link_to om_path do %>
+    <%= tabler_icon "home", size: "16px" %>
+    <span class="nav-label">Home</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to inbox_om_messages_path do %>
+    <%= tabler_icon "inbox", size: "16px" %>
+    <span class="nav-label"> Inbox</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to outbox_om_messages_path do %>
+    <%= tabler_icon "send", size: "16px" %>
+    <span class="nav-label"> Outbox</span>
+  <% end %>
+</li>
+
+<% if current_user.super_admin? || current_user.minister? || current_user.state_minister? || current_user.director? %>
+  <li>
+    <%= link_to directors_path do %>
+      <%= tabler_icon "signature", size: "16px" %>
+      <span class="nav-label">Signatures</span>
+    <% end %>
+  </li>
+<% end %>
