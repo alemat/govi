@@ -12,7 +12,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 gem 'simple_form', '~> 5.0.0'
-gem 'country_select', '~> 9.0'
+gem 'country_select', '~> 11.0'
 
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
